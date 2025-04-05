@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DailyUp Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #a2d4f5, #6e3cfa);
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 80px;
+      background: #4b3bb6;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+
+    .sidebar a {
+      margin: 20px 0;
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      font-size: 18px;
+      text-align: center;
+      line-height: 20px;
+      text-decoration: none;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main {
+      flex: 1;
+      background: linear-gradient(to right, #6e85f5, #7e4bfa);
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      padding: 20px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .search {
+      padding: 8px 15px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+
+    .tasks {
+      margin-top: 30px;
+    }
+
+    .tasks h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .task-boxes {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .task-box {
+      background: white;
+      color: black;
+      padding: 20px;
+      border-radius: 12px;
+      width: 100px;
+      height: 80px;
+      text-align: center;
+      font-weight: 600;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      line-height: 1.4;
+    }
+
+    .completed {
+      background-color: #49c3f2;
+    }
+
+    .pending {
+      background-color: #da9ed8;
+    }
+
+    .upcoming {
+      background-color: #5d9dee;
+    }
+
+    .overdue {
+      background-color: #b53e4f;
+      color: white;
+    }
+
+    .quote {
+      background: linear-gradient(to right, #67b6f5, #3387d4);
+      padding: 30px;
+      border-radius: 30px;
+      font-style: italic;
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .progress-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .progress-circle {
+      background: white;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .progress-circle::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(#2d8bdc 0% 50%, #d0ecf7 50% 100%);
+    }
+
+    .progress-circle span {
+      position: relative;
+      font-size: 24px;
+      font-weight: 700;
+      color: black;
+    }
+
+    .reward {
+      background: linear-gradient(to right, #7f6df2, #a654f9);
+      padding: 20px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      margin-top: 20px;
+    }
+
+    .reward .points {
+      background: #4f2cc3;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <a href="dashboard.html">🏠</a>
+      <a href="to-do.html">✅</a>
+      <a href="dates.html">🗓️</a>
+      <a href="profile.html">👤</a>
+    </div>
+    <div class="main">
+      <div class="header">
+        <h1>DailyUp ⬆</h1>
+        <input class="search" type="text" placeholder="Search" />
+      </div>
+      <div class="tasks">
+        <h2>Tasks</h2>
+        <div class="task-boxes">
+          <div class="task-box completed"><div>9</div><div>Completed</div></div>
+          <div class="task-box pending"><div>3</div><div>Pending</div></div>
+          <div class="task-box upcoming"><div>5</div><div>Upcoming</div></div>
+          <div class="task-box overdue"><div>2</div><div>Overdue</div></div>
+        </div>
+        <hr style="border-color: rgba(255,255,255,0.3); margin-bottom: 20px;" />
+        <div class="progress-section">
+          <div class="quote">"Each line moves you forward."</div>
+          <div>
+            <h3 style="margin-bottom: 10px;">Progress</h3>
+            <div class="progress-circle">
+              <span>50%</span>
+            </div>
+          </div>
+        </div>
+        <div class="reward">
+          <div>
+            <p>Congratulations Eddie,<br />You've successfully completed today's tasks</p>
+          </div>
+          <div class="points">200<br />Points</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

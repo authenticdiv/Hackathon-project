@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DailyUp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(90deg, #4CB8F4 0%, #3F2B96 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      display: flex;
+      gap: 4rem;
+      padding: 2rem;
+    }
+
+    .left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left h1 {
+      font-size: 3rem;
+      line-height: 1.4;
+      margin-bottom: 2rem;
+    }
+
+    .left button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      background: #5733d4;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .left button:hover {
+      background: #3d23a4;
+    }
+
+    .right {
+      flex: 1;
+      background: linear-gradient(to bottom right, #5e78f5, #4a46a9);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .tasks {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .task-box {
+      flex: 1;
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .completed { background-color: #60caf7; }
+    .pending { background-color: #ca6fa5; }
+    .upcoming { background-color: #83b6f2; }
+    .overdue { background-color: #9b4259; }
+
+    .quote {
+      background: linear-gradient(to right, #7ba3ff, #6b77e3);
+      padding: 1rem;
+      border-radius: 15px;
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .progress-circle {
+      width: 100px;
+      height: 100px;
+      background: conic-gradient(#7dc8f9 0% 50%, #ccc 50% 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .reward {
+      background: #5a38cf;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .reward span:last-child {
+      background: white;
+      color: #5a38cf;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+
+    .topbar {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .topbar button {
+      background: transparent;
+      border: 2px solid white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <span>Made for ⌄</span>
+    <button id="loginBtn">Log in</button>
+  </div>
+  <div class="container">
+    <div class="left">
+      <h1>Tame the chaos,<br>Tick off the GOALS.</h1>
+      <button id="getStartedBtn">Get Started</button>
+    </div>
+    <div class="right">
+      <h2>Tasks</h2>
+      <div class="tasks">
+        <div class="task-box completed">9<br>Completed</div>
+        <div class="task-box pending">3<br>Pending</div>
+        <div class="task-box upcoming">5<br>Upcoming</div>
+        <div class="task-box overdue">2<br>Overdue</div>
+      </div>
+      <div class="quote">"Each line moves you forward."</div>
+      <div class="progress-section">
+        <div><h3>Progress</h3></div>
+        <div class="progress-circle">50%</div>
+      </div>
+      <div class="reward">
+        <span>Congratulations Eddie, you’ve successfully completed today’s tasks</span>
+        <span>200 Points</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Redirect Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const loginBtn = document.getElementById("loginBtn");
+      const getStartedBtn = document.getElementById("getStartedBtn");
+
+      if (loginBtn) {
+        loginBtn.addEventListener("click", () => {
+          window.location.href = "login.html";
+        });
+      }
+
+      if (getStartedBtn) {
+        getStartedBtn.addEventListener("click", () => {
+          window.location.href = "login.html";
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

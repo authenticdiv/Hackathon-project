@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do's Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #a2d4f5, #6e3cfa);
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 80px;
+      background: #4b3bb6;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+
+    .sidebar button {
+      margin: 20px 0;
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .main {
+      flex: 1;
+      background: linear-gradient(to right, #6e85f5, #7e4bfa);
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      padding: 20px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search {
+      padding: 8px 15px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+
+    .todo-section {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      gap: 40px;
+    }
+
+    .todo-list, .reminders {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 30px;
+      width: 45%;
+      height: 70vh;
+    }
+
+    .todo-list h2, .reminders h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #2e00a5;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .task-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    .reminders {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .reminder-line {
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.3);
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <button id="menu-btn">≡</button>
+      <button id="home-btn">🏠</button>
+      <button id="todos-btn">✅</button>
+      <button id="calendar-btn">🗓️</button>
+      <button id="profile-btn">👤</button>
+    </div>
+    <div class="main">
+      <div class="header">
+        <input class="search" type="text" placeholder="Search">
+      </div>
+
+      <div class="todo-section">
+        <div class="todo-list">
+          <h2>Today's To do’s</h2>
+          <div class="task-item"><input type="checkbox"> <span>Build Layout</span></div>
+          <div class="task-item"><input type="checkbox"> <span>read 20 pages</span></div>
+          <div class="task-item"><input type="checkbox"> <span>task</span></div>
+          <div class="task-item"><input type="checkbox"> <span>task</span></div>
+          <div class="task-item"><input type="checkbox"> <span>task</span></div>
+          <div class="task-item"><input type="checkbox"> <span>task</span></div>
+          <div class="task-item"><input type="checkbox"> <span>task</span></div>
+          <div class="task-item"><input type="checkbox"> <span>task</span></div>
+          <div class="task-item"><input type="checkbox"> <span>task</span></div>
+          <div class="task-item"><input type="checkbox"> <span>task</span></div>
+        </div>
+
+        <div class="reminders">
+          <h2>Reminders</h2>
+          <div class="reminder-line"></div>
+          <div class="reminder-line"></div>
+          <div class="reminder-line"></div>
+          <div class="reminder-line"></div>
+          <div class="reminder-line"></div>
+          <div class="reminder-line"></div>
+          <div class="reminder-line"></div>
+          <div class="reminder-line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

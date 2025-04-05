@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DailyUp Calendar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #a2d4f5, #6e3cfa);
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 80px;
+      background: #4b3bb6;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+
+    .sidebar button {
+      margin: 20px 0;
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .main {
+      flex: 1;
+      background: linear-gradient(to right, #6e85f5, #7e4bfa);
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      padding: 20px 40px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .search {
+      padding: 8px 15px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+
+    .calendar-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .calendar-box, .dates-box {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 20px;
+      width: 350px;
+      color: white;
+    }
+
+    .calendar-box h2, .dates-box h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .calendar-header button {
+      background: white;
+      border: none;
+      border-radius: 10px;
+      width: 32px;
+      height: 32px;
+      font-size: 20px;
+      color: black;
+      cursor: pointer;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      text-align: center;
+      margin-top: 10px;
+      color: black;
+    }
+
+    .calendar-grid div {
+      padding: 10px 0;
+    }
+
+    .calendar-grid .day {
+      color: #4b3bb6;
+      font-weight: 600;
+    }
+
+    .calendar-grid .date {
+      background: white;
+      border-radius: 8px;
+      color: black;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .calendar-grid .date:hover,
+    .calendar-grid .date.hovered {
+      background: rgba(128, 0, 255, 0.3);
+    }
+
+    .calendar-grid .date.selected {
+      border: 2px solid #4b3bb6;
+      background: #e5edff;
+    }
+
+    .done-button {
+      margin-top: 20px;
+      background: #4b3bb6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .important-dates-list {
+      margin-top: 10px;
+      font-size: 16px;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <button id="menu-btn">≡</button>
+      <button id="home-btn">🏠</button>
+      <button id="todos-btn">✅</button>
+      <button id="calendar-btn">🗓️</button>
+      <button id="profile-btn">👤</button>
+    </div>
+    <div class="main">
+      <div class="header">
+        <h1>Calendar</h1>
+        <input class="search" type="text" placeholder="Search">
+      </div>
+      <div class="calendar-section">
+        <div class="calendar-box">
+          <div class="calendar-header">
+            <button id="prevMonthBtn">&lt;</button>
+            <span id="monthYearDisplay"></span>
+            <button id="nextMonthBtn">&gt;</button>
+          </div>
+          <div class="calendar-grid" id="calendarDays">
+            <!-- Days and dates will be generated here -->
+          </div>
+          <button class="done-button">Done</button>
+        </div>
+        <div class="dates-box">
+          <h2>Important Dates</h2>
+          <div class="important-dates-list" id="importantDates"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const calendarDays = document.getElementById('calendarDays');
+    const monthYearDisplay = document.getElementById('monthYearDisplay');
+    const importantDatesList = document.getElementById('importantDates');
+    const selectedDates = new Set();
+
+    let currentDate = new Date();
+
+    const renderCalendar = () => {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+
+      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      monthYearDisplay.textContent = `${monthNames[month]} ${year}`;
+
+      const firstDay = new Date(year, month, 1);
+      const lastDate = new Date(year, month + 1, 0).getDate();
+      const startDay = (firstDay.getDay() + 6) % 7; // Adjust so Monday is first
+
+      calendarDays.innerHTML = '';
+      const days = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"];
+      days.forEach(day => {
+        const div = document.createElement('div');
+        div.classList.add('day');
+        div.textContent = day;
+        calendarDays.appendChild(div);
+      });
+
+      for (let i = 0; i < startDay; i++) {
+        const empty = document.createElement('div');
+        calendarDays.appendChild(empty);
+      }
+
+      for (let i = 1; i <= lastDate; i++) {
+        const dateDiv = document.createElement('div');
+        dateDiv.classList.add('date');
+        dateDiv.textContent = i;
+
+        const fullDate = `${monthNames[month]} ${year} - ${i}`;
+
+        if (selectedDates.has(fullDate)) {
+          dateDiv.classList.add('selected');
+        }
+
+        dateDiv.addEventListener('mouseenter', () => {
+          dateDiv.classList.add('hovered');
+        });
+        dateDiv.addEventListener('mouseleave', () => {
+          dateDiv.classList.remove('hovered');
+        });
+        dateDiv.addEventListener('click', () => {
+          if (selectedDates.has(fullDate)) {
+            selectedDates.delete(fullDate);
+            dateDiv.classList.remove('selected');
+            [...importantDatesList.children].forEach(child => {
+              if (child.textContent === fullDate) child.remove();
+            });
+          } else {
+            selectedDates.add(fullDate);
+            dateDiv.classList.add('selected');
+            const entry = document.createElement('div');
+            entry.textContent = fullDate;
+            importantDatesList.appendChild(entry);
+          }
+        });
+
+        calendarDays.appendChild(dateDiv);
+      }
+    }
+
+    document.getElementById('prevMonthBtn').addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      renderCalendar();
+    });
+
+    document.getElementById('nextMonthBtn').addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      renderCalendar();
+    });
+
+    renderCalendar();
+  </script>
+</body>
+
+</html>
